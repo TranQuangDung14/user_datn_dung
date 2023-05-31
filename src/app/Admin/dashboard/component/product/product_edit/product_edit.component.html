@@ -1,0 +1,138 @@
+ <div class="row">
+  <div class="col-12">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-success shadow-primary border-radius-lg pt-4 pb-3 row">
+          <div class="col-6">
+            <h6 class="text-white text-capitalize ps-3">Cập nhật sản phẩm</h6>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <form method="PUT"  [formGroup]="productForm" (ngSubmit)="onSubmit()">
+          <!-- <div class="row">
+            <div class="col-6 form-group">
+              <label for="category_id">Danh mục sản phẩm</label>
+              <select class="form-select" formControlName="category_id">
+                <option value="">-- Chọn danh mục sản phẩm--</option>
+                <option *ngFor="let item of category_product" [value]="item.id">{{ item.name_cate }}</option>
+              </select>
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="category_id">Thương hiệu sản phẩm</h6>
+              <select class="form-select" formControlName="brand_id">
+                <option value="" disabled>-- Chọn thương hiệu sản phẩm --</option>
+                <option *ngFor="let item of brand" value="{{ item.id }}">{{ item.name }}</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="row mt-2">
+            <div class="col-12 form-group">
+              <label for="name">Tên sản phẩm</label>
+              <input type="text" class="form-control" formControlName="name">
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 form-group">
+              <label for="default_price">Giá tiền sản phẩm</label>
+              <input type="number" class="form-control" min="0" formControlName="default_price">
+            </div>
+            <div class="col-6 form-group">
+              <label for="image">Ảnh sản phẩm</label>
+              <input type="file" class="form-control" (change)="onFileSelected($event)" multiple>
+            </div>
+            <div class="row">
+                <div class="col-2 mt-2" *ngFor="let image of product?.images">
+                  <img src="http://127.0.0.1:8000/storage/image/product/{{ image.image}}" style="width: 150px;" alt="" >
+                  <button (click)="deleteImage(image.id)">X</button>
+                </div>
+                <div class=" mt-2"> <span id="preview"></span></div>
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-6 form-group">
+              <h6 for="category_id">Danh mục sản phẩm<span style="color: red;">*</span></h6>
+              <select class="form-select" formControlName="category_id">
+                <option value=""disabled>-- Chọn danh mục sản phẩm--</option>
+                <option *ngFor="let item of category_product" value="{{ item.id }}">{{ item.name_cate }}</option>
+              </select>
+              <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('category_id')">
+                <p style="font-size: 15px;">--{{ getErrorMessage('category_id') }}--</p>
+              </div>
+
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="category_id">Thương hiệu sản phẩm<span style="color: red;">*</span></h6>
+              <select class="form-select" formControlName="brand_id">
+                <option value="" disabled>-- Chọn thương hiệu sản phẩm --</option>
+                <option *ngFor="let item of brand" value="{{ item.id }}">{{ item.name }}</option>
+              </select>
+              <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('brand_id')">
+                <p style="font-size: 15px;">--{{ getErrorMessage('brand_id') }}--</p>
+              </div>
+            </div>
+
+
+          </div>
+          <div class="row mt-2">
+            <div class="col-12 form-group">
+              <h6 for="name">Tên sản phẩm<span style="color: red;">*</span></h6>
+              <input type="text" class="form-control" formControlName="name">
+              <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('name')">
+                <p style="font-size: 15px;">--{{ getErrorMessage('name') }}--</p>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="col-6 form-group">
+              <h6 for="default_price">Giá tiền sản phẩm<span style="color: red;">*</span></h6>
+              <input type="number" class="form-control" min="0" formControlName="default_price" >
+              <div style="color: #FF3333;" *ngIf="submitted && isInvalidField('default_price')">
+                <p style="font-size: 15px;">--{{ getErrorMessage('default_price') }}--</p>
+              </div>
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="image">Ảnh sản phẩm</h6>
+              <!-- <input type="file" class="form-control" (change)="onFileSelected($event)" multiple> -->
+              <input type="file" class="form-control" (change)="onFileSelected($event)" multiple>
+          </div>
+          <!-- <div class="mt-2" id="preview"></div> -->
+          <div class="row">
+            <!-- <div class="col"> -->
+              <div class="col-2 mt-2" *ngFor="let image of product?.images">
+                <img src="http://127.0.0.1:8000/storage/image/product/{{ image.image}}" style="width: 150px;" alt="" >
+                <button (click)="deleteImage(image.id)">X</button>
+              </div>
+              <div class=" mt-2"> <span id="preview"></span></div>
+            <!-- </div> -->
+          </div>
+
+          </div>
+          <div class="form-group mt-3">
+            <label for="tech_specs">Thông số kỹ thuật</label>
+            <ckeditor formControlName="tech_specs"></ckeditor>
+          </div>
+
+          <div class="form-group mt-3">
+            <label for="description">Mô tả sản phẩm</label>
+            <ckeditor class="form-control" formControlName="description"></ckeditor>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <a routerLink="/product"><button type="button" class="btn btn-warning">Quay lại</button></a>
+            <button type="submit" class="btn btn-danger ms-2">Lưu</button>
+          </div>
+
+            <!-- <a routerLink="/product"><button type="button" class="btn btn-warning">Quay lại</button></a>
+            <button type="submit" class="btn btn-primary ms-2">Lưu</button> -->
+          <!-- </div> -->
+          <!-- <div class="row">
+            <a routerLink="/product"><button type="button" class="btn btn-warning">Quay lại</button></a>
+            <button type="submit" class="btn btn-primary ms-2">Lưu</button>
+          </div> -->
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

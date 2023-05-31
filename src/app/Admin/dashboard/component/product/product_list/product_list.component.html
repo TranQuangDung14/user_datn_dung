@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+          <div class="col-6">
+            <h6 class="text-white text-capitalize ps-3">Sản phẩm</h6>
+          </div>
+          <div class="col-6 ">
+            <div class="d-flex">
+              <div class="flex-grow-1 me-2">
+                <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                  placeholder=" Tìm kiếm sản phẩm">
+              </div>
+              <a routerLink="/product-add">
+                <button type="button" class="btn btn-success float-end">
+                  <i class="fas fa-plus"></i> Thêm mới
+                </button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-secondary opacity-7">STT</th>
+                <th class="text-secondary opacity-7">Tên sản phẩm</th>
+                <th class="text-secondary opacity-7">giá tiền</th>
+                <th class="text-secondary opacity-7">Ảnh</th>
+                <th class="text-secondary opacity-7">Loại sản phẩm</th>
+                <th class="text-secondary opacity-7">Số lượng</th>
+                <th class="text-secondary opacity-7">Trạng thái</th>
+                <th class="text-secondary opacity-7">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let item of product|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                <td class="ps-4">{{i+1}}</td>
+                <td>{{item.name}}</td>
+                <td style="color: red;">{{item.default_price|currency:'VND' }}</td>
+                <!-- {{detail_price |currency:'VND' }} -->
+                <!-- <td>
+                  <div *ngFor="let image of product[0].images">
+                    <img style="width: 80px; height: 80px" [src]="'http://127.0.0.1:8000/storage/image/product/' + image.image">
+                </div>
+                </td> -->
+                <td>
+                  <img
+                    [src]="item.images[0]?.image ? 'http://127.0.0.1:8000/storage/image/product/' + item.images[0].image : './assets/img/not_product/not_product.jpeg'"
+                    alt="" style="width: 150px; height: 100px;">
+                </td>
+                <td>{{ item.category?.name}}</td>
+                <td>{{item.quantity}}</td>
+                <td>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch{{ item.id }}"
+                      [checked]="item.status === 1" (change)="toggleSwitch(item.id, item.status)">
+                    <label class="form-check-label" for="switch{{ item.id }}">{{ item.status === 1 ? 'Bật' : 'Tắt'
+                      }}</label>
+                  </div>
+                </td>
+                <td>
+                  <a [routerLink]="['/product-edit/',item.id]">
+                    <button type="button" class="btn btn-primary me-2" data-bs-target="#modal_edit">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                  </a>
+                  <!-- <a  (click)="addProduct(item)"><i class="fa fa-shopping-cart"></i></a> -->
+                  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#Modal_delete"
+                    (click)="openModal(item.id)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls previousLabel="Đầu" nextLabel="Cuối" (pageChange)="ontableDataChange($event)">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal delete -->
+<div class="modal fade" id="Modal_delete" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false"
+  aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Xóa</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{title}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(id)">Xóa</button>
+      </div>
+    </div>
+  </div>
+</div>

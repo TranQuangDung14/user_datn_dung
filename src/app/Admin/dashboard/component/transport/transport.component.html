@@ -1,0 +1,69 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+          <div class="col-6">
+            <h6 class="text-white text-capitalize ps-3">Quản lý Vận chuyển</h6>
+
+          </div>
+          <div class="col-6 ">
+                <div class="d-flex">
+                  <div class="flex-grow-1 me-2">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"placeholder=" Tìm kiếm đơn hàng">
+                  </div>
+                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                  data-bs-target="#modal_add">
+                  Thêm mới
+                </button>
+                </div>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-secondary opacity-7">STT</th>
+                <th class="text-secondary opacity-7">Nhân viên</th>
+                <th class="text-secondary opacity-7">Trạng thái đơn hàng</th>
+                <th class="text-secondary opacity-7">Thời gian dự kiến</th>
+                <th class="text-secondary opacity-7">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr
+                *ngFor="let item of transport|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                <td  class="ps-4">{{i+1}}</td>
+                <td>{{item.staff_id}}</td>
+                <td>{{item.status_oder}}</td>
+                <td>{{item.intend_time}}</td>
+                <td>
+                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
+                    data-bs-target="#modal_edit">
+                    Cập nhật
+                  </button>
+
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
+                    (click)="openModal(item.id)">
+                    Xóa
+                  </button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls previousLabel="Đầu" nextLabel="Cuối" (pageChange)="ontableDataChange($event)">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

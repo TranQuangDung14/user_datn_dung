@@ -1,0 +1,25 @@
+.form-select {
+  font-size: 16px;
+  height: 40px;
+  color: #333;
+  border-color: #ccc;
+  border-radius: 5px;
+}
+
+.form-control {
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+.btn-close{
+  background-color: #999999;
+}
+
+
+.modal-body {
+  max-height:700px;
+  overflow-y: scroll;
+}

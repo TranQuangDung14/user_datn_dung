@@ -1,0 +1,158 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+          <div class="col-6">
+            <h6 class="text-white text-capitalize ps-3">Banner</h6>
+
+          </div>
+          <div class="col-6 ">
+                <div class="d-flex">
+                  <div class="flex-grow-1 me-2">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                                  placeholder=" Tìm kiếm banner">
+                  </div>
+                  <!-- <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                  data-bs-target="#modal_add">
+                  <i class="fas fa-plus"></i> Thêm mới
+                </button> -->
+                </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-secondary opacity-7">STT</th>
+                <!-- <th class="text-secondary opacity-7">Tiều đề</th> -->
+                <th class="text-secondary opacity-7">image</th>
+                <th class="text-secondary opacity-7">Vị trí hiển thị</th>
+                <th class="text-secondary opacity-7">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr
+                *ngFor="let item of banner|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                <td  class="ps-4">{{i+1}}</td>
+                <!-- <td>{{item.title}}</td> -->
+                <td><img [src]="'http://127.0.0.1:8000/storage/'+item.image" alt="" style=" width: 150px;height: 100px;"></td>
+
+                <!-- <td><a href="#">Link</a></td>
+                <td>{{item.name_user}}</td> -->
+                <td>{{getbannerText(item.ordinal)}}</td>
+                <td>
+                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_banner_id(item.id)"
+                    data-bs-target="#modal_edit">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
+                    (click)="openModal(item.id)">
+                    <i class="fas fa-trash"></i>
+                  </button> -->
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls previousLabel="Đầu" nextLabel="Cuối" (pageChange)="ontableDataChange($event)">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal add -->
+<!-- <div class="modal fade" id="modal_add" tabindex="-1"data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form action="" method="POST" [formGroup]="form" (ngSubmit)="onCreate()">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm banner</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mt-4" >
+            <div class="col-6 form-group">
+              <h6 for="description">Ảnh <span style="color: red;">*</span></h6>
+                <input type="file" id="image" (change)="onFileChange($event)">
+                <img *ngIf="previewUrl" [src]="previewUrl" style="width: 150px;" alt="Image Preview" class="image-preview mt-3">
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="description">Số thứ tự <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="number" formControlName="ordinal" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<!-- Modal edit -->
+<div class="modal fade" id="modal_edit" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form [formGroup]="form" (ngSubmit)="onUpdate()">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa banner</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row mt-4">
+            <div class="col-6 form-group">
+              <h6 for="image">Ảnh <span style="color: red;">*</span></h6>
+              <input type="file" id="image" (change)="onFileChange($event)">
+              <img *ngIf="imagePreview" [src]="imagePreview" style="width: 150px;" alt="Image Preview" class="image-preview mt-3">
+            </div>
+            <div class="col-6 form-group">
+              <h6 for="ordinal">Số thứ tự <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="number" formControlName="ordinal" class="form-control" id="ordinal" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal delete -->
+<!-- <div class="modal fade" id="Modal_delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{title}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(id)">Xóa</button>
+
+
+      </div>
+    </div>
+  </div>
+</div> -->

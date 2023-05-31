@@ -1,0 +1,219 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+          <div class="col-6">
+            <h6 class="text-white text-capitalize ps-3">Bài viết</h6>
+
+          </div>
+          <div class="col-6 ">
+                <div class="d-flex">
+                  <div class="flex-grow-1 me-2">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                                  placeholder=" Tìm kiếm bài viết">
+                  </div>
+                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                  data-bs-target="#modal_add">
+                  <i class="fas fa-plus"></i> Thêm mới
+                </button>
+                </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-secondary opacity-7">STT</th>
+                <th class="text-secondary opacity-7">Tiều đề</th>
+                <th class="text-secondary opacity-7">image</th>
+                <th class="text-secondary opacity-7">link bài viết</th>
+                <th class="text-secondary opacity-7">Người viết</th>
+                <th class="text-secondary opacity-7">trạng thái</th>
+                <!-- <th class="text-secondary opacity-7">Mô tả</th> -->
+                <th class="text-secondary opacity-7">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr
+                *ngFor="let item of post|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                <td  class="ps-4">{{i+1}}</td>
+                <td>{{item.title}}</td>
+                <!-- <td>{{item.image}}</td> -->
+                <td><img [src]="'http://127.0.0.1:8000/storage/'+item.image" alt="" style=" width: 150px;height: 100px;"></td>
+
+                <td><a href="#">Link</a></td>
+                <td>{{item.name_user}}</td>
+                <td>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="switch{{ item.id }}"
+                      [checked]="item.status === 1" (change)="toggleSwitch(item.id, item.status)">
+                    <label class="form-check-label" for="switch{{ item.id }}">{{ item.status === 1 ? 'Bật' : 'Tắt'
+                      }}</label>
+                  </div>
+                </td>
+                <!-- <td [innerHTML]="item.description" ></td> -->
+                <td>
+                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
+                    data-bs-target="#modal_edit">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
+                    (click)="openModal(item.id)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls previousLabel="Đầu" nextLabel="Cuối" (pageChange)="ontableDataChange($event)">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal add -->
+<div class="modal fade" id="modal_add" tabindex="-1"data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form action="" method="POST" [formGroup]="from_post" (ngSubmit)="onCreate()">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm bài viết</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="resetForm()" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+
+            <div class="col-6 form-group">
+              <h6 for="category_id">Loại bài viết</h6>
+              <select class="form-select" formControlName="type_post_id">
+                <option value="" selected disabled>-- Chọn loại bài viết --</option>
+                <option *ngFor="let item of type_post" value="{{ item.id }}">{{ item.name }}</option>
+              </select>
+            </div>
+            <div class="col-6 form-group">
+              <!-- <label for="example-input-group" class="form-label">Tên thương hiệu <span style="color: red;">*</span></label> -->
+              <h6 for="description">Tiêu đề <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="title" placeholder="Nhập tiêu đề bài viết" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4" >
+            <div class="col-6 form-group">
+              <h6 for="description">Hashtag <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="hashtag" placeholder="Nhập hashtag" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+              <div class="col-6 form-group">
+                <h6 for="description">Ảnh <span style="color: red;">*</span></h6>
+                  <input type="file" id="image" (change)="onFileChange($event)">
+                  <img *ngIf="previewUrl" [src]="previewUrl" style="width: 150px;" alt="Image Preview" class="image-preview mt-3">
+              </div>
+            <!-- </div> -->
+          </div>
+          <div class="form-group mt-4">
+            <h6 for="content">Mô tả</h6>
+            <ckeditor formControlName="content"></ckeditor>
+            <!-- <input type="text" class="form-control" formControlName="price"> -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" >Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal edit -->
+<div class="modal fade" id="modal_edit" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form action="" method="POST" [formGroup]="from_post" (ngSubmit)="onEdit()">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Sửa Loại bài viết</h1>
+          <button type="button" class="btn-close" (click)="resetForm()" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+
+            <div class="col-6 form-group">
+              <h6 for="category_id">Loại bài viết</h6>
+              <select class="form-select" formControlName="type_post_id">
+                <option value="" selected disabled>-- Chọn loại bài viết --</option>
+                <option *ngFor="let item of type_post" value="{{ item.id }}">{{ item.name }}</option>
+              </select>
+            </div>
+            <div class="col-6 form-group">
+              <!-- <label for="example-input-group" class="form-label">Tên thương hiệu <span style="color: red;">*</span></label> -->
+              <h6 for="description">Tiêu đề <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="title" placeholder="Nhập tiêu đề bài viết" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4" >
+            <div class="col-6 form-group">
+              <h6 for="description">Hashtag <span style="color: red;">*</span></h6>
+              <div class="input-group input-group-outline">
+                <input type="text" formControlName="hashtag" placeholder="Nhập hashtag" class="form-control"
+                  id="example-input-group">
+              </div>
+            </div>
+              <div class="col-6 form-group">
+                <h6 for="description">Ảnh<span style="color: red;">*</span></h6>
+                <!-- <input formControlName="image" type="file" id="image" (change)="onImagePicked($event)" /> -->
+                <img *ngIf="previewImage" style="width: 150px;" [src]="previewImage" alt="Image preview" />
+
+              </div>
+            <!-- </div> -->
+          </div>
+          <div class="form-group mt-4">
+            <h6 for="content">Mô tả</h6>
+            <!-- <ckeditor [formControl]="from_post_edit.controls['content']" ></ckeditor> -->
+            <ckeditor formControlName="content"></ckeditor>
+            <!-- <input type="text" class="form-control" formControlName="price"> -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="resetForm()" data-bs-dismiss="modal">Hủy</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Cập nhật</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal delete -->
+<div class="modal fade" id="Modal_delete" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{title}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(id)">Xóa</button>
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,136 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+          <div class="col-6">
+            <h6 class="text-white text-capitalize ps-3">Quản lý voucher</h6>
+
+          </div>
+          <div class="col-6 ">
+                <div class="d-flex">
+                  <div class="flex-grow-1 me-2">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                                  placeholder=" Tìm kiếm voucher">
+                  </div>
+                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                  data-bs-target="#modal_add">
+                  <i class="fas fa-plus"></i> Thêm mới
+                </button>
+                </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-secondary opacity-7">STT</th>
+                <th class="text-secondary opacity-7">Mã vocher</th>
+                <!-- <th class="text-secondary opacity-7">Nhà cung cấp</th> -->
+                <th class="text-secondary opacity-7">Chiết khấu</th>
+                <th class="text-secondary opacity-7">Thời gian bắt đầu</th>
+                <th class="text-secondary opacity-7">Thời gian kết thúc</th>
+                <th class="text-secondary opacity-7">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody >
+              <tr
+                *ngFor="let item of voucher|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                <td  class="ps-4">{{i+1}}</td>
+                <td>{{item.code}}</td>
+                <td>{{item.discount_percentage}}%</td>
+                <td>{{item.start_date}}</td>
+                <td>{{item.end_date}}</td>
+                <!-- <td>{{cate.name_supplier}}</td> -->
+                <!-- <td>{{item.status}}</td> -->
+                <td>
+                  <!-- <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(cate.id)"
+                    data-bs-target="#modal_edit">
+                    <i class="fas fa-edit"></i>
+                  </button> -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
+                    (click)="openModal(item.id)">
+                    <i class="fas fa-trash"></i>
+                  </button>
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls previousLabel="Đầu" nextLabel="Cuối" (pageChange)="ontableDataChange($event)">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal add -->
+<div class="modal fade" id="modal_add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="" method="POST" [formGroup]="from_input" (ngSubmit)="onCreate()">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Tạo voucher</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="example-input-group" class="form-label">Chiết khấu <span style="color: red;">*</span></label>
+            <div class="input-group input-group-outline">
+              <input type="number" min="0" max="100" formControlName="discount_percentage" placeholder="Nhập Chiết khấu" class="form-control"
+                id="example-input-group">
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="example-input-group" class="form-label">Thời gian bắt đầu<span style="color: red;">*</span></label>
+            <div class="input-group input-group-outline">
+              <input type="datetime-local" formControlName="start_date" placeholder="Nhập Chiết khấu" class="form-control"
+                id="example-input-group">
+                <!-- <input type="datetime-local" [(ngModel)]="selectedDateTime"> -->
+
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="example-input-group" class="form-label">Thời gian kết thúc<span style="color: red;">*</span></label>
+            <div class="input-group input-group-outline">
+              <input type="datetime-local" formControlName="end_date" placeholder="Nhập Chiết khấu" class="form-control"
+                id="example-input-group">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal delete -->
+<div class="modal fade" id="Modal_delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{title}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <!-- <button type="button" class="btn btn-danger" (click)="onDelete(id)">Xóa</button> -->
+        <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" (click)="onDelete(id)">Xóa</button>
+
+
+      </div>
+    </div>
+  </div>
+</div>

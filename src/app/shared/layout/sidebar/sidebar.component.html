@@ -1,0 +1,314 @@
+<!-- <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main"> -->
+  <div class="sidenav-header">
+    <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
+    <a class="navbar-brand m-0" href="#" target="_blank">
+      <img src="assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+      <span class="ms-1 font-weight-bold text-white">Q.D Shopppp</span>
+    </a>
+  </div>
+  <hr class="horizontal light mt-0 mb-2">
+  <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link text-white active bg-gradient-warning" routerLink="dashboard">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">dashboard</i>
+          </div>
+          <span class="nav-link-text ms-1">Bảng điều khiển</span>
+        </a>
+      </li>
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản lý Sản phẩm</h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="category">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">receipt_long</i>
+          </div>
+          <span class="nav-link-text ms-1">Danh mục</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="product">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <!-- <i class="material-icons opacity-10">table_view</i> -->
+            <!-- <i class="fa-brands fa-product-hunt fa-bounce"></i> -->
+            <i class="fa-solid fa-desktop fa-bounce"></i>
+            <!-- <i class="fa-brands fa-product-hunt"></i> -->
+          </div>
+          <span class="nav-link-text ms-1">Danh sách</span>
+        </a>
+      </li>
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản lý đối tác</h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="supplier">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <!-- <i class="material-icons opacity-10">view_in_ar</i> -->
+            <i class="fa-solid fa-truck-field fa-bounce"></i>
+          </div>
+          <span class="nav-link-text ms-1">Danh sách nhà cung cấp</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="brands">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <!-- <i class="material-icons opacity-10">receipt_long</i>
+            <i class="fa-solid fa-trademark fa-bounce"></i> -->
+            <i class="fa-regular fa-code-branch fa-bounce"></i>
+          </div>
+          <span class="nav-link-text ms-1">Danh sách thương hiệu</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="customer">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <!-- <i class="material-icons opacity-10">format_textdirection_r_to_l</i> -->
+            <i class="fa-solid fa-person-military-pointing fa-bounce"></i>
+          </div>
+          <span class="nav-link-text ms-1">Khách hàng</span>
+        </a>
+      </li>
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản lý Kho</h6>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link text-white " routerLink="warehouse">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-sharp fa-solid fa-list-ol fa-bounce"></i>
+          </div>
+          <span class="nav-link-text ms-1">Danh sách tồn kho</span>
+        </a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="Import-orders">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <!-- <i class="material-icons opacity-10">receipt_long</i> -->
+            <i class="fa-sharp fa-solid fa-list-ol fa-fade"></i>
+          </div>
+          <span class="nav-link-text ms-1">Danh sách nhập kho</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="Export-orders">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-sharp fa-solid fa-list-ol fa-beat-fade"></i>
+          </div>
+          <span class="nav-link-text ms-1">danh sách xuất kho</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="voucher">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <!-- <i class="fa-sharp fa-solid fa-list-ol fa-flip"></i> -->
+            <i class="fa-brands fa-codepen  fa-bounce"></i>
+          </div>
+          <span class="nav-link-text ms-1">voucher</span>
+        </a>
+      </li>
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Đơn</h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="order">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-sharp fa-solid fa-cart-shopping fa-bounce"></i>
+          </div>
+          <span class="nav-link-text ms-1">Quản lý đơn hàng</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="order_processing">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-sharp fa-solid fa-cart-shopping fa-fade"></i>
+          </div>
+          <span class="nav-link-text ms-1">Đơn chưa xử lý</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="orders_are_being_delivered">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-cart-shopping fa-beat"></i>
+          </div>
+          <span class="nav-link-text ms-1">Đơn đang giao</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="order_success">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-cart-shopping fa-beat-fade"></i>
+          </div>
+          <span class="nav-link-text ms-1">Đơn giao thành công</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="order_cancel">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-cart-shopping fa-spin"></i>
+          </div>
+          <span class="nav-link-text ms-1">Đơn đã hủy</span>
+        </a>
+      </li>
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản lý tương tác </h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="type-post">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <span class="nav-link-text ms-1">Loại bài viết</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="type-video">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">receipt_long</i>
+          </div>
+          <span class="nav-link-text ms-1">Danh mục video</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="post">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">receipt_long</i>
+          </div>
+          <span class="nav-link-text ms-1">Danh sách bài viết</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="video">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <!-- <i class="material-icons opacity-10">receipt_long</i> -->
+            <i class="fa-solid fa-play fa-beat-fade"></i>
+          </div>
+          <span class="nav-link-text ms-1">Danh sách video</span>
+        </a>
+      </li>
+
+
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Quản trị web </h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="banner">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <span class="nav-link-text ms-1">slide show</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="store_information">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-quote-left"></i>
+          </div>
+          <span class="nav-link-text ms-1">thông tin Liên hệ</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link text-white " routerLink="type-video">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">receipt_long</i>
+          </div>
+          <span class="nav-link-text ms-1">Danh mục video</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="post">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">receipt_long</i>
+          </div>
+          <span class="nav-link-text ms-1">Danh sách bài viết</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="video">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-play fa-beat-fade"></i>
+          </div>
+          <span class="nav-link-text ms-1">Danh sách video</span>
+        </a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a class="nav-link text-white " routerLink="warehouse">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">receipt_long</i>
+          </div>
+          <span class="nav-link-text ms-1">Quản lý xuất kho</span>
+        </a>
+      </li> -->
+
+      <!-- <li class="nav-item">
+        <a class="nav-link text-white " routerLink="transport">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">receipt_long</i>
+          </div>
+          <span class="nav-link-text ms-1">Vận chuyển</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="order-history">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">receipt_long</i>
+          </div>
+          <span class="nav-link-text ms-1">Lịch sử đơn hàng</span>
+        </a>
+      </li> -->
+
+      <!-- <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tương tác</h6>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white " routerLink="supplier">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">view_in_ar</i>
+          </div>
+          <span class="nav-link-text ms-1">Nhà cung cấp</span>
+        </a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link text-white " href="#">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">notifications</i>
+          </div>
+          <span class="nav-link-text ms-1">Notifications</span>
+        </a>
+      </li>
+      <li class="nav-item mt-3">
+        <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Tài khoản</h6>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white " href="#">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">person</i>
+          </div>
+          <span class="nav-link-text ms-1">Hồ sơ</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link text-white " href="#">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">login</i>
+          </div>
+          <span class="nav-link-text ms-1">Sign In</span>
+        </a>
+      </li> -->
+      <li class="nav-item">
+        <a class="nav-link text-white " (click)="onlogout()">
+          <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="material-icons opacity-10">logout</i>
+          </div>
+          <span  class="nav-link-text ms-1">Đăng xuất</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+    <div class="mx-3">
+      <a class="btn bg-gradient-primary mt-4 w-100" routerLink="dashboard" type="button">Dũng vip pro</a>
+    </div>
+  </div>
+<!-- </aside> -->

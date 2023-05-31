@@ -1,0 +1,137 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card my-4">
+      <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+        <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+          <div class="col-6">
+            <h6 class="text-white text-capitalize ps-3">Quản lý xuất kho</h6>
+
+          </div>
+          <div class="col-6 ">
+                <div class="d-flex">
+                  <div class="flex-grow-1 me-2">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"
+                                  placeholder=" Tìm kiếm đơn xuất kho">
+                  </div>
+                  <button type="button" class="btn btn-success float-end" data-bs-toggle="modal"
+                  data-bs-target="#modal_add">
+                  Tạo phiếu xuất kho
+                </button>
+                </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body px-0 pb-2">
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-secondary opacity-7">STT</th>
+                <th class="text-secondary opacity-7">Mã đơn hàng</th>
+                <!-- <th class="text-secondary opacity-7">Số lượng nhập</th> -->
+                <th class="text-secondary opacity-7">Tổng tiền đơn xuất</th>
+                <th class="text-secondary opacity-7">Người nhập</th>
+                <th class="text-secondary opacity-7">Thời gian xuất</th>
+                <!-- <th class="text-secondary opacity-7">Thao tác</th> -->
+              </tr>
+            </thead>
+            <tbody >
+              <tr
+                *ngFor="let item of export_order|filter:searchText| paginate:{ itemsPerPage : tableSize, currentPage: page, totalItems: count};let i = index">
+                <td  class="ps-4">{{i+1}}</td>
+                <td>{{item.order.code_order}}</td>
+                <td>{{item.order.total_money}}</td>
+                <td>{{item.staff.name}}</td>
+                <td>{{item.updated_at}}</td>
+                <!-- <td>{{item.status}}</td> -->
+                <!-- <td>
+                  <button type="button" class="btn btn-secondary me-2" data-bs-toggle="modal" (click)="get_id(item.id)"
+                    data-bs-target="#editwarehouse">
+                    Cập nhật kho
+                  </button>
+
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Modal_delete"
+                    (click)="openModal(item.id)">
+                    Xóa
+                  </button>
+                </td> -->
+              </tr>
+            </tbody>
+          </table>
+          <div>
+            <pagination-controls previousLabel="Đầu" nextLabel="Cuối" (pageChange)="ontableDataChange($event)">
+            </pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal add -->
+<div class="modal fade" id="modal_add" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form action="" method="POST" [formGroup]="from" (ngSubmit)="onCreate()">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Tạo mới phiếu nhập kho</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <h6 for="category_id">Chọn đơn hàng xuất</h6>
+            <select class="form-select" formControlName="order_id">
+              <option value="" selected disabled>-- Chọn đơn hàng --</option>
+              <option *ngFor="let item of order_status_2" value="{{ item.id }}">{{ item.code_order }}</option>
+            </select>
+          </div>
+          <div class="mb-3 mt-3">
+            <label for="example-input-group" class="form-label">Thời gian nhận hàng dự tính<span style="color: red;">*</span></label>
+            <div class="input-group input-group-outline">
+              <input type="datetime-local" min="0" formControlName="delivery_date" class="form-control"
+                id="example-input-group" vb>
+            </div>
+          </div>
+          <!-- <div class="mb-3">
+            <label for="example-input-group" class="form-label">Giá nhập<span style="color: red;">*</span></label>
+            <div class="input-group input-group-outline">
+              <input type="number"  min="0"  formControlName="price" placeholder="Nhập giá nhập" class="form-control"
+                id="example-input-group">
+            </div>
+          </div> -->
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <div class="modal fade" id="editwarehouse" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form action="" method="POST" [formGroup]="warehouse_fromEdit" (ngSubmit)="onEdit()">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Cập nhập số lượng cho sản phẩm: </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="example-input-group" class="form-label">Số lượng <span style="color: red;">*</span></label>
+          <div class="input-group input-group-outline">
+            <input type="number" formControlName="amount" placeholder="Số lượng" class="form-control"
+              id="example-input-group">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button class="btn btn-primary" data-bs-toggle="modal">Lưu</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div> -->
