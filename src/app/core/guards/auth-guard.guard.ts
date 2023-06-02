@@ -16,7 +16,7 @@ export class AuthGuardGuard implements CanActivate {
         tap((isLoggedIn:any)=>{
           if(!isLoggedIn){
             alert("bạn cần đăng nhập để vào page này");
-            this.router.navigate(['/login']);
+            this.router.navigate(['/account']);
           }
         })
       );

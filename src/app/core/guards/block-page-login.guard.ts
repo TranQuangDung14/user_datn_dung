@@ -19,7 +19,7 @@ export class BlockPageLoginGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.admin.isLoggedIn()) {
-      this.router.navigate(['/dashboard']).then(() => {
+      this.router.navigate(['/']).then(() => {
         window.location.reload();
       })
       return false;

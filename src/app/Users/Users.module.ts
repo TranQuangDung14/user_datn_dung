@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './Users.component';
 import { SharedModule } from '../shared/shared.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './component/index/index.component';
@@ -18,6 +18,10 @@ import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { BlockPageLoginGuard } from '../core/guards/block-page-login.guard';
 import { AuthGuardGuard } from '../core/guards/auth-guard.guard';
+import { Blog_detailsComponent } from './component/blogs/blog_details/blog_details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { CKEditorModule } from 'ckeditor4-angular';
 
 const router_home:Routes=[
   {
@@ -29,12 +33,16 @@ const router_home:Routes=[
         component: IndexComponent,
       },
       {
-        path:"chi-tiet-san-pham",
+        path:"chi-tiet-san-pham/:id",
         component: DetailsComponent,
       },
       {
         path:"bai-viet",
         component: BlogsComponent,
+      },
+      {
+        path:"chi-tiet-bai-viet/:id",
+        component: Blog_detailsComponent,
       },
       {
         path:"cua-hang",
@@ -66,9 +74,9 @@ const router_home:Routes=[
     ]
   },
   {
-    path:"login",
+    path:"account",
     component:LoginComponent,
-    // canActivate: [BlockPageLoginGuard],
+    canActivate: [BlockPageLoginGuard],
   },
   {
     path:"register",
@@ -89,13 +97,18 @@ const router_home:Routes=[
     ProductComponent,
     VideoComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    Blog_detailsComponent
   ],
   imports: [
     SharedModule,
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    CKEditorModule,
+    FormsModule,
     RouterModule.forChild(router_home)
   ],
 
