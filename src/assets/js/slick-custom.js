@@ -6,6 +6,7 @@
 
         /*==================================================================
         [ Slick1 ]*/
+        // setTimeout(() => {
         $('.wrap-slick1').each(function(){
             var wrapSlick1 = $(this);
             var slick1 = $(this).find('.slick1');
@@ -33,6 +34,7 @@
                     },$(layerCurrentItem[i]).data('delay'),i);
                 }
             });
+          // }, 2000);
 
 
             var showDot = false;

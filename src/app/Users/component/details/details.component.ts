@@ -83,33 +83,34 @@ export class DetailsComponent extends BaseComponent implements OnInit,AfterViewI
       );
   }
   addProduct() {
-    const product_id = this.id = this._router.snapshot.params['id'];
-    // console.log('ahha',this.authService.islog)
+    // const product_id = this.id = this._router.snapshot.params['id'];
+    // const product_id = this.id = this._router.snapshot.params['id'];
+    // console.log('id nè',this.id);
     this.admin.islog.subscribe((isLogged: boolean) => {
       if (!isLogged) {
-        alert('Bạn cần đăng nhập để sử dụng tính năng này!');
-        this.router.navigate(['login']);
+        window.alert('Bạn cần đăng nhập để sử dụng tính năng này!');
+        this.router.navigate(['account']);
         return;
       }
-    // const product_id = product.id;
-    console.log('day',this.product_id)
-    const quantity = 1;
 
-    // Kiểm tra nếu số lượng sản phẩm là 0
-    if (this.quantity == 0 || this.quantity == null) {
-      alert('Sản phẩm đã hết hàng');
-      return;
-    }
+      const quantity = 1;
 
-    this.admin.create_cart(product_id, quantity).subscribe(
-      (data) => {
-        alert('Đã thêm thành công 1 sản phẩm vào giỏ hàng!');
-      },
-      (error) => {
-        console.error('Lỗi khi thêm sản phẩm vào giỏ hàng', error);
+      if (this.quantity == 0 || this.quantity == null) {
+        window.alert('Sản phẩm đã hết hàng');
+        return;
       }
+
+      this.admin.create_cart(this.id, quantity).subscribe(
+        (data) => {
+            let event = new CustomEvent("addedToCart", { detail: { productName: this.detail_name } });
+            window.dispatchEvent(event);
+            // window.location.reload();
+        },
+        (error) => {
+            console.error('Lỗi khi thêm sản phẩm vào giỏ hàng', error);
+        }
     );
-  });
+    });
   }
 
 }

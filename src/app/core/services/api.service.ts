@@ -315,4 +315,27 @@ export class ApiService {
       }
     )
   };
+  // getProvinces() {
+  //   return this._http.get<any>(this.API_URL+'provinces`)
+  // };
+  // địa chỉ
+  // tỉnh
+  getProvinces(): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'provinces/');
+  }
+  // Huyện
+  getDistricts(provinceId: number): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'districts/'+provinceId);
+  }
+  // xã
+  getWards(districtId: number): Observable<any> {
+    return this._http.get<any>(this.API_URL + 'wards/'+districtId);
+  }
+  // getDistricts(provinceId: number) {
+  //   return this.http.get(`${this.apiUrl}/districts/${provinceId}`);
+  // }
+
+  // getWards(districtId: number) {
+  //   return this.http.get(`${this.apiUrl}/wards/${districtId}`);
+  // }
 }

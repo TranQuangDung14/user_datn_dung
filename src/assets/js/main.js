@@ -129,18 +129,19 @@
 
   /*==================================================================
   [ Isotope ]*/
-  var $topeContainer = $('.isotope-grid');
-  var $filter = $('.filter-tope-group');
+  setTimeout(() => {
+    var $topeContainer = $('.isotope-grid');
+    var $filter = $('.filter-tope-group');
 
-  // filter items on button click
-  $filter.each(function () {
-    $filter.on('click', 'button', function () {
-      var filterValue = $(this).attr('data-filter');
-      $topeContainer.isotope({ filter: filterValue });
+    // filter items on button click
+    $filter.each(function () {
+      $filter.on('click', 'button', function () {
+        var filterValue = $(this).attr('data-filter');
+        $topeContainer.isotope({ filter: filterValue });
+      });
+
     });
-
-  });
-
+  }, 500);
   // init Isotope
   $(window).on('load', function () {
     var $grid = $topeContainer.each(function () {
@@ -334,12 +335,17 @@
 
   /*---------------------------------------------*/
 
-  $('.js-addcart-detail').each(function () {
-    var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-    $(this).on('click', function () {
-      swal(nameProduct, "is added to cart !", "success");
-    });
+  // $('.js-addcart-detail').each(function () {
+  //   var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+  //   $(this).on('click', function () {
+  //     swal(nameProduct, "is added to cart !", "success");
+  //   });
+  // });
+  window.addEventListener('addedToCart', function (e) {
+    var nameProduct = e.detail.productName;
+    swal(nameProduct, "Đã thêm sản phẩm vào giỏ hàng !", "success");
   });
+
   $('.js-pscroll').each(function () {
     $(this).css('position', 'relative');
     $(this).css('overflow', 'hidden');

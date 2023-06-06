@@ -3,31 +3,13 @@
     <div class="row">
       <div class="col-sm-6 col-lg-3 p-b-50">
         <h4 class="stext-301 cl0 p-b-30">
-          Categories
+          Danh mục
         </h4>
 
         <ul>
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Women
-            </a>
-          </li>
-
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Men
-            </a>
-          </li>
-
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Shoes
-            </a>
-          </li>
-
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Watches
+          <li class="p-b-10" *ngFor="let item of category">
+            <a href="cua-hang" class="stext-107 cl7 hov-cl1 trans-04">
+              {{ item.name }}
             </a>
           </li>
         </ul>
@@ -35,43 +17,36 @@
 
       <div class="col-sm-6 col-lg-3 p-b-50">
         <h4 class="stext-301 cl0 p-b-30">
-          Help
+          Danh mục bài viết
         </h4>
 
         <ul>
-          <li class="p-b-10">
+          <li class="p-b-10" *ngFor="let item of type_post">
             <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Track Order
+              {{ item.name }}
             </a>
           </li>
 
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Returns
-            </a>
-          </li>
 
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Shipping
-            </a>
-          </li>
-
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              FAQs
-            </a>
-          </li>
         </ul>
       </div>
 
       <div class="col-sm-6 col-lg-3 p-b-50">
         <h4 class="stext-301 cl0 p-b-30">
-          GET IN TOUCH
+         Liên hệ với chúng tôi
         </h4>
 
         <p class="stext-107 cl7 size-201">
-          Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+          email: {{ store_information?.email }}
+        </p>
+        <p class="stext-107 cl7 size-201">
+          Địa chỉ: {{ store_information?.address }}
+        </p>
+        <p class="stext-107 cl7 size-201">
+          Số điện thoại: {{ store_information?.number_phone }}
+        </p>
+        <p class="stext-107 cl7 size-201">
+          Thời gian mở cửa: {{ store_information?.open_time }}
         </p>
 
         <div class="p-t-27">
@@ -91,10 +66,33 @@
 
       <div class="col-sm-6 col-lg-3 p-b-50">
         <h4 class="stext-301 cl0 p-b-30">
-          Newsletter
+          Chức năng
         </h4>
 
-        <form>
+        <ul>
+          <li class="p-b-10" >
+            <a href="" class="stext-107 cl7 hov-cl1 trans-04">
+              Trang chủ
+            </a>
+          </li>
+          <li class="p-b-10" >
+            <a href="cua-hang" class="stext-107 cl7 hov-cl1 trans-04">
+              Cửa hàng
+            </a>
+          </li>
+          <li class="p-b-10" >
+            <a href="don-hang" class="stext-107 cl7 hov-cl1 trans-04">
+              Đơn hàng
+            </a>
+          </li>
+          <li class="p-b-10" >
+            <a href="gio-hang" class="stext-107 cl7 hov-cl1 trans-04">
+              Giỏ hàng
+            </a>
+          </li>
+        </ul>
+
+        <!-- <form>
           <div class="wrap-input1 w-full p-b-4">
             <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
             <div class="focus-input1 trans-04"></div>
@@ -105,7 +103,7 @@
               Subscribe
             </button>
           </div>
-        </form>
+        </form> -->
       </div>
     </div>
 

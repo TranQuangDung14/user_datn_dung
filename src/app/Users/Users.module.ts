@@ -78,10 +78,10 @@ const router_home:Routes=[
     component:LoginComponent,
     canActivate: [BlockPageLoginGuard],
   },
-  {
-    path:"register",
-    component:RegisterComponent,
-  },
+  // {
+  //   path:"register",
+  //   component:RegisterComponent,
+  // },
 
 ]
 @NgModule({

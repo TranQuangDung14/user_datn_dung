@@ -22,6 +22,7 @@ export class CartsComponent extends BaseComponent implements OnInit,AfterViewIni
   }
 
   ngOnInit() {
+    this.get_cart();
   }
   info_product:any;
   datacart:any;
@@ -39,49 +40,70 @@ export class CartsComponent extends BaseComponent implements OnInit,AfterViewIni
     this.admin.apply_voucher(this.voucherCode)
       .subscribe(
         response => {
-          // alert(response.message);
-;         this.toastr.success(response.message, 'Tốt');
+          alert(response.message);
+          // Xử lý thành công
+          // console.log(response.message);
+          // alert('Áp dụng voucher thành công!');
+          this.toastr.success('Áp dụng voucher thành công!', );
           this.get_cart();
         },
         error => {
           // Xử lý lỗi
           alert('Mã không hợp lệ hoặc đã hết hạn!');
+          this.toastr.error('Áp dụng voucher thất bại!', );
           // console.log(error);
         }
       );
   }
+  increaseQuantity(item: any) {
+    item.quantity++;
+    this.updateQuantity(item);
+}
 
-  updateQuantity(item: any) {
-    console.log('soluong',item.quantity);
+decreaseQuantity(item: any) {
+    if (item.quantity > 0) { // chỉ giảm nếu số lượng hiện tại lớn hơn 0
+        item.quantity--;
+        this.updateQuantity(item);
+    }
+}
+
+updateQuantity(item: any) {
     this.admin.update_quantity_cart(item.id, item.quantity)
-      .subscribe(
+    .subscribe(
         response => {
-          // Hiển thị thông báo thành công bằng alert hoặc thông báo khác
-          // console.log(response.message);
-          // this.toastr.success('Cập nhật sô!', 'Tốt');
-          // alert(response.message);
-          this.get_cart();
+            this.get_cart();
+
         },
         error => {
-          // Hiển thị thông báo lỗi bằng alert hoặc thông báo khác
-          // console.log(error);
-          alert('Cập nhật k thành công!');
-
+            alert('Cập nhật không thành công!');
         }
-      );
-  }
+    );
+}
+
+  // updateQuantity(item: any) {
+  //   console.log('soluong',item.quantity);
+  //   this.admin.update_quantity_cart(item.id, item.quantity)
+  //     .subscribe(
+  //       response => {
+  //         this.get_cart();
+  //       },
+  //       error => {
+  //         alert('Cập nhật k thành công!');
+  //       }
+  //     );
+  // }
   removeProduct(item: any) {
     console.log('id',item)
     this.admin.delete_product_cart(item).subscribe(
         response => {
           this.get_cart();
+          this.toastr.success('Xóa sản phẩm thành công!', );
           // location.reload();
             // Xóa sản phẩm khỏi danh sách hiển thị hoặc thực hiện các thao tác cần thiết
-            this.toastr.success('Xóa sản phẩm thành công!', 'Tốt');
         },
         error => {
             // Xử lý lỗi khi xóa sản phẩm
-            this.toastr.error('Xóa sản phẩm thất bại!');
+            this.toastr.error('Xóa sản phẩm thất bại!', );
         }
     );
 }
