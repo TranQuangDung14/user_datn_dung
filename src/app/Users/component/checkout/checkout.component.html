@@ -50,7 +50,7 @@
             </div>
           </div>
 
-          <label for="provinces_id">Tỉnh/Thành phố:</label>
+          <!-- <label for="provinces_id">Tỉnh/Thành phố:</label> -->
           <!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
             <select class="js-select2" name="provinces_id" formControlName="provinces_id"  [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)">
               <option>Chọn tỉnh/thành phố</option>
@@ -58,7 +58,7 @@
             </select>
             <div class="dropDownSelect2"></div>
           </div> -->
-          <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+          <!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9"> -->
             <!-- <label for="provinces_id">Tỉnh/Thành phố:</label> -->
             <!-- <select class="js-select2" id="provinces_id" name="provinces_id" formControlName="provinces_id" [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)"> -->
               <!-- <select class="js-select2" id="provinces_id" name="provinces_id" formControlName="provinces_id" (change)="onChangeProvince($event)">
@@ -73,7 +73,7 @@
 
 
             <div class="dropDownSelect2"></div> -->
-          </div>
+          <!-- </div> -->
           <!-- <label for="districts_id">Quận/Huyện:</label>
           <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
             <select class="js-select2" id="districts_id" name="districts_id" formControlName="districts_id" [(ngModel)]="selectedDistrict" (change)="loadWards(selectedDistrict)">
@@ -90,27 +90,27 @@
             </select>
             <div class="dropDownSelect2"></div>
           </div> -->
+          <label for="provinces_id">Tỉnh/Thành phố:</label>
           <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <label for="provinces_id">Tỉnh/Thành phố:</label>
-            <select id="provinces_id" name="provinces_id" formControlName="provinces_id" [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)">
+            <select class="js-select2" id="provinces_id" name="provinces_id" formControlName="provinces_id" [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)">
               <option value="">Chọn tỉnh/thành phố</option>
               <option *ngFor="let province of provinces" [value]="province.code">{{ province.name }}</option>
             </select>
             <div class="dropDownSelect2"></div>
           </div>
 
+          <label for="districts_id">Quận/Huyện:</label>
           <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <label for="districts_id">Quận/Huyện:</label>
-            <select id="districts_id" name="districts_id" formControlName="districts_id" [(ngModel)]="selectedDistrict" (change)="loadWards(selectedDistrict)">
+            <select class="js-select2" id="districts_id" name="districts_id" formControlName="districts_id" [(ngModel)]="selectedDistrict" (change)="loadWards(selectedDistrict)">
               <option value="">Chọn quận/huyện</option>
               <option *ngFor="let district of districts" [value]="district.code">{{ district.name }}</option>
             </select>
             <div class="dropDownSelect2"></div>
           </div>
 
+          <label for="ward_id">Phường/Xã:</label>
           <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <label for="ward_id">Phường/Xã:</label>
-            <select id="ward_id" name="ward_id" formControlName="ward_id" [(ngModel)]="selectedWard">
+            <select class="js-select2" id="ward_id" name="ward_id" formControlName="ward_id" [(ngModel)]="selectedWard">
               <option value="">Chọn phường/xã</option>
               <option *ngFor="let ward of wards" [value]="ward.code">{{ ward.name }}</option>
             </select>

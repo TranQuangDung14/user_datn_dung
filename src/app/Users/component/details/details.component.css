@@ -1,0 +1,3 @@
+.tab-pane {
+  overflow: auto; /* Sử dụng 'auto' hoặc 'scroll' tùy thuộc vào yêu cầu của bạn */
+}

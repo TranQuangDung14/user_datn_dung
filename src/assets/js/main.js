@@ -290,12 +290,12 @@
 
   // trang chủ
 
-  $(".js-select2").each(function () {
+  $('select').each(function () {
     $(this).select2({
       minimumResultsForSearch: 20,
       dropdownParent: $(this).next('.dropDownSelect2')
     });
-  })
+  });
 
   $('.gallery-lb').each(function () { // the containers for all your galleries
     $(this).magnificPopup({
