@@ -27,6 +27,7 @@ export class BlogsComponent extends BaseComponent implements OnInit, AfterViewIn
   featured_products:any;
   //phân trang
   // POSTS: any;
+  // searchText:any;
   page: number = 1;
   count: number = 0;
   tableSize: number = 4;
@@ -56,7 +57,7 @@ export class BlogsComponent extends BaseComponent implements OnInit, AfterViewIn
     this.admin.get_index_product().subscribe((data: any) => {
       this.type_post = data.type_post;
       this.featured_products=data.featured_products;
-      console.log('ang',this.featured_products[0].images[0].image);
+      console.log('ang',this.featured_products);
     }, error => {
       console.log(error);
     })

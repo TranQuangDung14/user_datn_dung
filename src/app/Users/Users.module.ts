@@ -59,17 +59,17 @@ const router_home:Routes=[
       {
         path:"don-hang",
         component: OrderComponent,
-        // canActivate: [AuthGuardGuard],
+        canActivate: [AuthGuardGuard],
       },
       {
         path:"gio-hang",
         component: CartsComponent,
-        // canActivate: [AuthGuardGuard],
+        canActivate: [AuthGuardGuard],
       },
       {
         path:"thanh-toan",
         component: CheckoutComponent,
-        // canActivate: [AuthGuardGuard],
+        canActivate: [AuthGuardGuard],
       },
     ]
   },

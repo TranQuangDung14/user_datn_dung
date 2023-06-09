@@ -8,7 +8,7 @@
 <section class="section-slide">
   <div class="wrap-slick1 rs2-slick1">
     <div class="slick1">
-         <div class="item-slick1 bg-overlay1" [style.background-image]="'url(http://127.0.0.1:8000/storage/' + banner_1 + ')'" data-thumb="assets/images/thumb-01.jpg" data-caption="Women’s Wear">
+         <div class="item-slick1 bg-overlay1" [style.background-image]="'url(http://127.0.0.1:8000/storage/' + banner_1 + ')'" [attr.data-thumb]="'http://127.0.0.1:8000/storage/' + banner_1"  data-caption="  Mùa độ máy tính">
         <div class="container h-full">
           <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
             <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
@@ -33,7 +33,7 @@
       </div>
 
       <div class="item-slick1 bg-overlay1" [style.background-image]="'url(http://127.0.0.1:8000/storage/' + banner_2 + ')'"
-        data-thumb="assets/images/thumb-02.jpg" data-caption="Men’s Wear">
+      [attr.data-thumb]="'http://127.0.0.1:8000/storage/' + banner_2" data-caption=" Vua phụ kiện màn hình">
         <div class="container h-full">
           <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
             <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -49,7 +49,7 @@
             </div>
 
             <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
-              <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+              <a href="cua-hang" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
                 Xem ngay
               </a>
             </div>
@@ -58,7 +58,7 @@
       </div>
 
       <div class="item-slick1 bg-overlay1" [style.background-image]="'url(http://127.0.0.1:8000/storage/' + banner_3 + ')'"
-        data-thumb="assets/images/thumb-03.jpg" data-caption="Men’s Wear">
+      [attr.data-thumb]="'http://127.0.0.1:8000/storage/' + banner_3" data-caption=" Buồng lái giả lập">
         <div class="container h-full">
           <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
             <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
@@ -74,8 +74,8 @@
             </div>
 
             <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
-              <a href="product.html" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                Xem ngat
+              <a href="cua-hang" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
+                Xem ngay
               </a>
             </div>
           </div>
@@ -114,12 +114,12 @@
         <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
           <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
           <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-          Filter
+          lọc
         </div>
         <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
           <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
           <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-          Search
+          tìm kiếm
         </div>
       </div>
       <!-- Search product -->
