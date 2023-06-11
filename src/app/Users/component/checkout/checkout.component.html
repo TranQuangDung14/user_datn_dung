@@ -50,51 +50,9 @@
             </div>
           </div>
 
-          <!-- <label for="provinces_id">Tỉnh/Thành phố:</label> -->
-          <!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <select class="js-select2" name="provinces_id" formControlName="provinces_id"  [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)">
-              <option>Chọn tỉnh/thành phố</option>
-              <option *ngFor="let item of provinces" [value]="province.id">{{ item.name }}</option>
-            </select>
-            <div class="dropDownSelect2"></div>
-          </div> -->
-          <!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9"> -->
-            <!-- <label for="provinces_id">Tỉnh/Thành phố:</label> -->
-            <!-- <select class="js-select2" id="provinces_id" name="provinces_id" formControlName="provinces_id" [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)"> -->
-              <!-- <select class="js-select2" id="provinces_id" name="provinces_id" formControlName="provinces_id" (change)="onChangeProvince($event)">
-
-              <option value="">Chọn tỉnh/thành phố</option>
-              <option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</option>
-            </select> -->
-            <!-- <select class="js-select2" id="provinces_id" name="provinces_id" formControlName="provinces_id" [(ngModel)]="selectedProvince" (ngModelChange)="onChangeProvince($event)">
-              <option value="">Chọn tỉnh/thành phố</option>
-              <option *ngFor="let province of provinces" [value]="province.id">{{ province.name }}</option>
-            </select>
-
-
-            <div class="dropDownSelect2"></div> -->
-          <!-- </div> -->
-          <!-- <label for="districts_id">Quận/Huyện:</label>
-          <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <select class="js-select2" id="districts_id" name="districts_id" formControlName="districts_id" [(ngModel)]="selectedDistrict" (change)="loadWards(selectedDistrict)">
-              <option value="">Chọn quận/huyện</option>
-              <option *ngFor="let district of districts" [value]="district.id">{{ district.name }}</option>
-            </select>
-            <div class="dropDownSelect2"></div>
-          </div>
-          <label for="ward_id">Phường/Xã:</label>
-          <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <select  class="js-select2" id="ward_id" name="ward_id" formControlName="ward_id" [(ngModel)]="selectedWard">
-              <option value="">Chọn phường/xã</option>
-              <option *ngFor="let ward of wards" [value]="ward.id">{{ ward.name }}</option>
-            </select>
-            <div class="dropDownSelect2"></div>
-          </div> -->
-
-
           <label for="provinces_id">Tỉnh/Thành phố:</label>
           <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <select class="js-select2" id="provinces_id" name="provinces_id" formControlName="provinces_id" [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)">
+            <select class="js-select2"  style="width: 100%;height: 30px;" id="provinces_id" name="provinces_id" formControlName="provinces_id" [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)">
               <option value="">Chọn tỉnh/thành phố</option>
               <option *ngFor="let province of provinces" [value]="province.code">{{ province.name }}</option>
             </select>
@@ -103,7 +61,7 @@
 
           <label for="districts_id">Quận/Huyện:</label>
           <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <select class="js-select2" id="districts_id" name="districts_id" formControlName="districts_id" [(ngModel)]="selectedDistrict" (change)="loadWards(selectedDistrict)">
+            <select class="js-select2" style="width: 100%;height: 30px;" id="districts_id" name="districts_id" formControlName="districts_id" [(ngModel)]="selectedDistrict" (change)="loadWards(selectedDistrict)">
               <option value="">Chọn quận/huyện</option>
               <option *ngFor="let district of districts" [value]="district.code">{{ district.name }}</option>
             </select>
@@ -112,7 +70,7 @@
 
           <label for="ward_id">Phường/Xã:</label>
           <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <select class="js-select2" id="ward_id" name="ward_id" formControlName="ward_id" [(ngModel)]="selectedWard">
+            <select class="js-select2"  style="width: 100%;height: 30px;" id="ward_id" name="ward_id" formControlName="ward_id" [(ngModel)]="selectedWard">
               <option value="">Chọn phường/xã</option>
               <option *ngFor="let ward of wards" [value]="ward.code">{{ ward.name }}</option>
             </select>
@@ -126,32 +84,6 @@
               <p style="font-size: 15px; color: #FF3333;">{{ getErrorMessage('receiver_address') }}</p>
             </div>
           </div>
-<!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <label for="provinces_id">Tỉnh/Thành phố:</label>
-            <select id="provinces_id" name="provinces_id" formControlName="provinces_id" [(ngModel)]="selectedProvince" (change)="loadDistricts(selectedProvince)">
-              <option value="">Chọn tỉnh/thành phố</option>
-              <option *ngFor="let province of provinces" [value]="province.code">{{ province.name }}</option>
-            </select>
-            <div class="dropDownSelect2"></div>
-          </div>
-
-          <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <label for="districts_id">Quận/Huyện:</label>
-            <select id="districts_id" name="districts_id" formControlName="districts_id" [(ngModel)]="selectedDistrict" (change)="loadWards(selectedDistrict)">
-              <option value="">Chọn quận/huyện</option>
-              <option *ngFor="let district of districts" [value]="district.code">{{ district.name }}</option>
-            </select>
-            <div class="dropDownSelect2"></div>
-          </div>
-
-          <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-            <label for="ward_id">Phường/Xã:</label>
-            <select id="ward_id" name="ward_id" formControlName="ward_id" [(ngModel)]="selectedWard">
-              <option value="">Chọn phường/xã</option>
-              <option *ngFor="let ward of wards" [value]="ward.code">{{ ward.name }}</option>
-            </select>
-            <div class="dropDownSelect2"></div>
-          </div> -->
 
         </div>
       </div>

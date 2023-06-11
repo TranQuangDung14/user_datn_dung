@@ -22,6 +22,7 @@ import { Blog_detailsComponent } from './component/blogs/blog_details/blog_detai
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CKEditorModule } from 'ckeditor4-angular';
+import { InfoComponent } from './account/info/info.component';
 
 const router_home:Routes=[
   {
@@ -71,6 +72,11 @@ const router_home:Routes=[
         component: CheckoutComponent,
         canActivate: [AuthGuardGuard],
       },
+      {
+        path:"thong-tin-tai-khoan",
+        component: InfoComponent,
+        canActivate: [AuthGuardGuard],
+      },
     ]
   },
   {
@@ -98,7 +104,8 @@ const router_home:Routes=[
     VideoComponent,
     LoginComponent,
     RegisterComponent,
-    Blog_detailsComponent
+    Blog_detailsComponent,
+    InfoComponent
   ],
   imports: [
     SharedModule,

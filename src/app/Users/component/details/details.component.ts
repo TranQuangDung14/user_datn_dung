@@ -102,6 +102,7 @@ export class DetailsComponent extends BaseComponent implements OnInit,AfterViewI
 
       this.admin.create_cart(this.id, quantity).subscribe(
         (data) => {
+          console.log('data',data);
             let event = new CustomEvent("addedToCart", { detail: { productName: this.detail_name } });
             window.dispatchEvent(event);
             // window.location.reload();

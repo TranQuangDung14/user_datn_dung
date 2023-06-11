@@ -315,6 +315,15 @@ export class ApiService {
       }
     )
   };
+
+    // thêm mới danh mục
+    update_password(data: any): Observable<any> {
+      return this._http.post<any>(this.API_URL + 'change-password/', data, {
+        headers: {
+          Authorization: this.code_tokens,
+        },
+      });
+    }
   // getProvinces() {
   //   return this._http.get<any>(this.API_URL+'provinces`)
   // };
@@ -338,4 +347,5 @@ export class ApiService {
   // getWards(districtId: number) {
   //   return this.http.get(`${this.apiUrl}/wards/${districtId}`);
   // }
+
 }

@@ -1,0 +1,123 @@
+<!-- header -->
+<app-hearder_main></app-hearder_main>
+<!-- breadcrumb -->
+<div class="container">
+  <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg" >
+    <!-- <a href="" class="stext-109 cl8 hov-cl1 trans-04">
+      Trang chủ
+      <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+    </a> -->
+
+    <h2 style="text-align: center;" >
+      Thông tin cá nhân
+    </h2>
+  </div>
+</div>
+<div class="bor10 m-t-50 p-t-43 p-b-40">
+  <!-- Tab01 -->
+  <div class="tab01">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item p-b-10">
+        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Thông tin người dùng</a>
+      </li>
+
+      <li class="nav-item p-b-10">
+        <a class="nav-link" data-toggle="tab" href="#information" role="tab">Đổi mật khẩu</a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content p-t-43">
+      <!-- - -->
+      <div class="tab-pane fade show active" id="description" role="tabpanel">
+        <div class="how-pos2 p-lr-15-md">
+          <!-- <p class="stext-102 cl6" [innerHTML]="detail_description"> -->
+        <!-- {{ detail_description }} -->
+          <!-- </p> -->
+        </div>
+      </div>
+
+      <!-- - -->
+      <!-- <div class="tab-pane fade" id="information" role="tabpanel">
+        <div class="how-pos2 p-lr-15-md">
+          <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()">
+            <div>
+              <label>Mật khẩu cũ</label>
+              <input type="password"  class="form-control" formControlName="old_password" placeholder="nhập mật khẩu cũ">
+            </div>
+
+            <div>
+              <label>Mật khẩu mới</label>
+              <input type="password"  class="form-control" formControlName="new_password"placeholder="nhập khẩu mới">
+            </div>
+
+            <div>
+              <label>Nhập lại mật khẩu mới</label>
+              <input type="password"  class="form-control" formControlName="new_confirm_password" placeholder="nhập lại mật khẩu mới">
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-danger m-t-20">Đổi mật khẩu</button>
+            </div>
+
+          </form>
+
+
+        </div>
+      </div> -->
+      <div class="tab-pane fade" id="information" role="tabpanel">
+        <div class="how-pos2 p-lr-15-md">
+          <form [formGroup]="changePasswordForm" (ngSubmit)="onSubmit()">
+            <div>
+              <label>Mật khẩu cũ</label>
+              <div class="input-group">
+                <input type="{{ showOldPassword ? 'text' : 'password' }}" class="form-control" formControlName="old_password" placeholder="Nhập mật khẩu cũ">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="toggleShowOldPassword()">
+                    <i class="fa" [ngClass]="showOldPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label>Mật khẩu mới</label>
+              <div class="input-group">
+                <input type="{{ showNewPassword ? 'text' : 'password' }}" class="form-control" formControlName="new_password" placeholder="Nhập mật khẩu mới">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="toggleShowNewPassword()">
+                    <i class="fa" [ngClass]="showNewPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label>Nhập lại mật khẩu mới</label>
+              <div class="input-group">
+                <input type="{{ showConfirmPassword ? 'text' : 'password' }}" class="form-control" formControlName="new_confirm_password" placeholder="Nhập lại mật khẩu mới">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button" (click)="toggleShowConfirmPassword()">
+                    <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-danger m-t-20">Đổi mật khẩu</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- footer -->
+<app-footer></app-footer>
+<!-- Back to top -->
+<app-back_to_top></app-back_to_top>
+<!-- Modal1 -->
+<app-modal1></app-modal1>
