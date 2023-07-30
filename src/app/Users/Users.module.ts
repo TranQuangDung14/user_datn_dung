@@ -23,6 +23,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { InfoComponent } from './account/info/info.component';
+import { Hearder_mainComponent } from '../shared/layout/hearder_main/hearder_main.component';
 
 const router_home:Routes=[
   {
@@ -105,7 +106,8 @@ const router_home:Routes=[
     LoginComponent,
     RegisterComponent,
     Blog_detailsComponent,
-    InfoComponent
+    InfoComponent,
+    // Hearder_mainComponent
   ],
   imports: [
     SharedModule,

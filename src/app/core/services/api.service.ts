@@ -287,7 +287,25 @@ export class ApiService {
     return this._http.get<any>(this.API_URL + 'banner-slide/');
   }
   //filter
-  get_filter_products(category_id?: number, min_price?: number, max_price?: number,brand_id?:number): Observable<any> {
+  // get_filter_products(category_id?: number, min_price?: number, max_price?: number,brand_id?:number): Observable<any> {
+  //   let params = new HttpParams();
+
+  //   if (category_id) {
+  //     params = params.set('category_id', category_id.toString());
+  //   }
+  //   if (brand_id) {
+  //     params = params.set('brand_id', brand_id.toString());
+  //   }
+  //   if (min_price) {
+  //     params = params.set('min_price', min_price.toString());
+  //   }
+  //   if (max_price) {
+  //     params = params.set('max_price', max_price.toString());
+  //   }
+
+  //   return this._http.get<any>(this.API_URL + 'filter_products/', { params });
+  // }
+  get_filter_products(category_id?: number, min_price?: number, max_price?: number,brand_id?:number, search?: string): Observable<any> {
     let params = new HttpParams();
 
     if (category_id) {
@@ -302,9 +320,12 @@ export class ApiService {
     if (max_price) {
       params = params.set('max_price', max_price.toString());
     }
-
-    return this._http.get<any>(this.API_URL + 'filter_products/', { params });
+    if (search) {
+      params = params.set('search', search);
+    }
+    return this._http.get<any>(this.API_URL + 'filter_search/', { params });
   }
+
   //thông tin liên hệ
   get_store_information(): Observable<any> {
     return this._http.get<any>(this.API_URL + 'store_information_customer/'
@@ -347,5 +368,7 @@ export class ApiService {
   // getWards(districtId: number) {
   //   return this.http.get(`${this.apiUrl}/wards/${districtId}`);
   // }
-
+  searchProducts(search: string): Observable<any> {
+    return this._http.get(this.API_URL + 'search', { params: { search: search } });
+  }
 }

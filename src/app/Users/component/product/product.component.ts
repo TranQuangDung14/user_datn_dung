@@ -27,6 +27,7 @@ export class ProductComponent extends BaseComponent implements OnInit,AfterViewI
   max_price: number;
   category_id: any;
   brand_id: number;
+  search:any;
   ngAfterViewInit() {
     this.loadScripts('assets/js/main.js');
     this.loadScripts('assets/js/slick-custom.js');
@@ -34,6 +35,10 @@ export class ProductComponent extends BaseComponent implements OnInit,AfterViewI
   ngOnInit() {
     this.get_index_product();
     this.fetchProducts();
+    this._router.queryParams.subscribe((params:any) => {
+      this.search = params['search'];
+      this.fetchProducts();
+    });
   }
     //phân trang
   // POSTS: any;
@@ -54,7 +59,7 @@ export class ProductComponent extends BaseComponent implements OnInit,AfterViewI
     this.data_service.setData(product.id);
   }
     fetchProducts() {
-      this.admin.get_filter_products(this.category_id, this.min_price, this.max_price, this.brand_id).subscribe(data => {
+      this.admin.get_filter_products(this.category_id, this.min_price, this.max_price, this.brand_id, this.search).subscribe(data => {
         this.products = data;
         console.log('adad',this.products)
       }, error => {
@@ -67,7 +72,10 @@ export class ProductComponent extends BaseComponent implements OnInit,AfterViewI
       this.max_price = maxPrice;
       this.fetchProducts();
     }
-
+    onSearchChange(search: string) {
+      this.search = search;
+      this.fetchProducts();
+    }
   //phân trang
   ontableDataChange(event: any) {
     this.page = event;
