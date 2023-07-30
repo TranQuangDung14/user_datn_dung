@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service';
 import { ComponentService } from 'src/app/core/services/component.service';
 
@@ -14,6 +15,8 @@ export class Hearder_mainComponent implements OnInit {
   constructor(
     private data_service: ComponentService,
     private admin: ApiService,
+    private router: Router,
+
   ) { }
 
   ngOnInit(): void {
@@ -38,4 +41,9 @@ export class Hearder_mainComponent implements OnInit {
       }
     );
   }
+  search: string = '';
+
+onSubmit() {
+  this.router.navigate(['/cua-hang'], { queryParams: { search: this.search } });
+}
 }

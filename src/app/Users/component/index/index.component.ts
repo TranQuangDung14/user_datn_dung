@@ -70,6 +70,11 @@ export class IndexComponent extends BaseComponent implements OnInit,AfterViewIni
       }
     );
   }
+  search: string = '';
+  // products: any[] = [];
+  onSearch(): void {
+    this.router.navigate(['/cua-hang'], { queryParams: { search: this.search } });
+  }
   get_index_product() {
    this.admin.get_index_product().subscribe(
       (data: any) => {

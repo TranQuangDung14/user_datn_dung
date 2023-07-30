@@ -11,6 +11,7 @@ import { BannerComponent } from './layout/banner/banner.component';
 import { Modal1Component } from './layout/modal1/modal1.component';
 import { Back_to_topComponent } from './layout/back_to_top/back_to_top.component';
 import { Hearder_mainComponent } from './layout/hearder_main/hearder_main.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -39,6 +40,7 @@ import { Hearder_mainComponent } from './layout/hearder_main/hearder_main.compon
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule
   ]
 })
 export class SharedModule { }
